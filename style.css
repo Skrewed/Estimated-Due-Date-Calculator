@@ -7,7 +7,6 @@ body {
 
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly
 
     height: 100vh;
 
@@ -43,7 +42,6 @@ header{
     top: 0px;
     position: fixed;
     width: 100vw;
-    /* margin-bottom: 20px; */
 }
 
 footer{
@@ -69,7 +67,7 @@ a{
     flex-wrap: wrap;
     flex-direction: column;
 
-    margin: calc(6vh + 20px) auto 10px auto;
+    margin: calc(6vh + 20px) auto 0 auto;
 }
 
 .dateConstructor{
@@ -94,6 +92,9 @@ select{
 
     border: 0px none;
     border-radius: 6px;
+
+    color: #ff9589;
+    background-color:rgb(250, 250, 250);
 }
 
 .sub-sec-title{
@@ -111,7 +112,6 @@ select{
 
     font-weight: 500;
     color: rgb(250, 250, 250);
-
     background-color: #ffb7af;
 }
 
@@ -127,14 +127,13 @@ select{
     width: 80vw;
     max-width: 800px;
 
-    margin: 0 auto calc(6vh + 20px) auto;
+    margin: 10px auto calc(6vh + 30px) auto;
 
     border-radius: 6px;
 }
 
 button {
     color: rgb(250, 250, 250);
-    font-size: 16px;
     font-weight: 500;
 
     background-color: #ff9589;
