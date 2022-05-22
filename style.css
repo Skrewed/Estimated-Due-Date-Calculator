@@ -81,7 +81,7 @@ a{
 .dateConstructor{
     display: flex;
     flex-direction: row;
-    column-gap: 20px;
+    column-gap: 10px;
 
     align-items: center;
     justify-content: space-evenly;
@@ -149,8 +149,8 @@ button {
     border-radius: 100%;
     border: 0px none;
 
-    height: 10vh;
-    width: 10vh;
+    height: 16vh;
+    width: 16vh;
 
     margin: 10px 0;
 }
