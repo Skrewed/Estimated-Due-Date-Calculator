@@ -1,17 +1,16 @@
-var selectedDate, day, month, year
+var eddDay, eddMonth, eddYear
 
 //Listen to btn-calc click and returns the calculation
 document.querySelector(".btn-calc").addEventListener('click', function (){
-    if (day == undefined) {
-        alert('Selecione uma data.')
-    } else {
-        alert(`Day: ${day}\nMonth: ${month}\nYear: ${year}`);
-    }
-})
+    eddDay = document.querySelector('.dayClass').value
+    eddMonth = document.querySelector('.monthClass').value
+    eddYear = document.querySelector('.yearClass').value
 
-//Listen to input date change
-document.querySelector(".date").addEventListener('change', function(){
-    day = this.value.split("-")[2]
-    month = this.value.split("-")[1]
-    year = this.value.split("-")[0]
+    if (eddDay == 0 || eddMonth == 0 || eddYear == 0){
+        alert(`You need to select a Date.`);
+    } else {
+        alert(`Day: ${eddDay}\nMonth: ${eddMonth}\nYear: ${eddYear}`);
+    }
+
+    
 })

@@ -34,10 +34,6 @@ a{
     color: #ffa392;
 }
 
-.main{
-    background-color: rgb(12, 119, 83);
-}
-
 .calculation{
     background-color: rgb(221, 62, 62);
 
@@ -48,9 +44,32 @@ a{
     flex-direction: column;
 }
 
+.dateConstructor{
+    display: flex;
+    flex-direction: row;
+    column-gap: 20px;
+
+    align-items: center;
+    justify-content: space-evenly;
+
+    width: 80vw;
+    max-width: 800px;
+}
+
+select{
+    text-align: center;
+
+    height: 3vh;
+    min-height: 40px;
+
+    width: 100vw;
+
+    border: 0px none;
+    border-radius: 6px;
+}
+
 .sub-sec-title{
 
-    padding: 4px;
     margin: 10px 0;
 
     border-radius: 6px;
