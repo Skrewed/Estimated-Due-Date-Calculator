@@ -1,7 +1,7 @@
 var eddDay, eddMonth, eddYear
 
 function renderResults(divClass){
-    document.querySelector(divClass).style.color = '#333333'
+    document.querySelector(divClass).style.color = '#474747'
     document.querySelector(divClass).style.fontSize = '1rem'
     document.querySelector(divClass).style.fontWeight = '800'
     document.querySelector(divClass).style.fontStyle = 'normal'
@@ -25,7 +25,6 @@ document.querySelector(".btn-calc").addEventListener('click', function (){
         alert(`You need to select a Date.`);
     } else {
         // alert(`Day: ${eddDay}\nMonth: ${eddMonth}\nYear: ${eddYear}`);
-
 
         //Writes the GA based on the LMP.
         document.querySelector(".gaResClass").innerText = `${Number(eddDay)} weeks and ${Number(eddMonth)} days.`
