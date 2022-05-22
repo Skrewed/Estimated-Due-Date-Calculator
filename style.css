@@ -1,0 +1,91 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: 'Roboto', 'Open Sans', sans-serif;
+    background-color: rgb(243, 243, 243);
+    background-color: black;
+}
+
+header{
+    margin-bottom: 20px;
+}
+
+header, footer {
+    height: 5vh;
+    min-height: 50px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    font-weight: 500;
+    color: #ffa392;
+
+    background-color: rgb(243, 243, 243);
+}
+
+a{
+    text-decoration: none;
+    color: #ffa392;
+}
+
+.main{
+    background-color: rgb(12, 119, 83);
+}
+
+.calculation{
+    background-color: rgb(221, 62, 62);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.sub-sec-title{
+
+    padding: 4px;
+    margin: 10px 0;
+
+    border-radius: 6px;
+
+    height: 3vh;
+    min-height: 40px;
+    width: 80vw;
+    max-width: 800px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-weight: 500;
+    color: rgb(243, 243, 243);
+
+    background-color: #ffa392;
+}
+
+.explanation{
+    color: white;
+}
+
+button {
+    background-color: rgb(243, 243, 243);
+    border-radius: 100%;
+    border: 0px none;
+    height: 10vh;
+    width: 10vh;
+}
+
+button:hover{
+    background-color: #ffa392;
+}
+
+.credits > p{
+    font-size: 14px;
+}
