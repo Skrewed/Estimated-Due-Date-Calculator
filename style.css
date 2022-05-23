@@ -14,6 +14,43 @@
     border-radius:10px;
 }
 
+
+@media only screen and (orientation:portrait) and (max-width: 1400px) {
+    body{
+        background: url("./assets/1400-2300.png") no-repeat center center fixed;
+    }
+}
+
+@media only screen and (orientation:portrait) and (max-width: 1080px) {
+    body{
+        background: url("./assets/1080-1920.png") no-repeat center center fixed;
+    }
+}
+
+@media only screen and (orientation:portrait) and (max-width: 620px) {
+    body{
+        background: url("./assets/720-1560.png") no-repeat center center fixed;
+    }
+}
+
+@media only screen and (orientation:landscape) and (max-width: 1920px) {
+    body{
+        background: url("./assets/1920-1440.png") no-repeat center center fixed;
+    }
+}
+
+@media only screen and (orientation:landscape) and (max-width: 720px) {
+    body{
+        background: url("./assets/1360-768.png") no-repeat center center fixed;
+    }
+}
+
+@media only screen and (orientation:landscape) and (min-width: 1920px) {
+    body{
+        background: url("./assets/2560-1440.png") no-repeat center center fixed;
+    }
+}
+
 body {
     display: flex;
     flex-direction: column;
@@ -25,7 +62,6 @@ body {
 
     font-family: 'Roboto', 'Open Sans', sans-serif;
     
-    background: url("./assets/bg-1080p.png") no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -33,6 +69,7 @@ body {
 
     image-rendering: auto;
     image-rendering: crisp-edges;
+    image-rendering: optimizeQuality;
 }
 
 /* 
@@ -83,7 +120,7 @@ footer > div > p > a{
     color:#ffa49a
 }
 
-.calculation {
+.main {
     display: flex;
     justify-content: center;
     align-items: center;
