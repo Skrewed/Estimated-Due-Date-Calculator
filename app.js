@@ -33,6 +33,22 @@ if (((currentYear % 4 == 0) && (currentYear % 100 != 0)) || (currentYear % 400 =
     daysInFebruary = 28
 }
 
+//Array storing how many days there is in each month
+daysArr = {
+    jan : 31,
+    feb : daysInFebruary,
+    mar : 31,
+    apr : 30,
+    may : 31,
+    jun : 30,
+    jul : 31,
+    aug : 31,
+    sep : 30,
+    oct : 31,
+    nov : 30,
+    dec : 31
+}
+
 //Disable day 31 on months that have only 30 days (disables 31, 30 and 29 on February)
 document.querySelector(".monthClass").addEventListener('change', function(){
 
@@ -86,7 +102,7 @@ document.querySelector(".monthClass").addEventListener('change', function(){
             document.querySelector(".dayClass > option:nth-child(32)").style.display = 'none'
             chosenMonth = Number(chosenMonth)
 
-            if (chosenDay > 30){
+            if (chosenDay > daysArr.apr){
                 document.querySelector(".dayClass").value = "0"
             }
         break;
@@ -103,7 +119,7 @@ document.querySelector(".monthClass").addEventListener('change', function(){
             document.querySelector(".dayClass > option:nth-child(32)").style.display = 'none'
             chosenMonth = Number(chosenMonth)
 
-            if (chosenDay > 30){
+            if (chosenDay > daysArr.jun){
                 document.querySelector(".dayClass").value = "0"
             }
         break;
@@ -126,7 +142,7 @@ document.querySelector(".monthClass").addEventListener('change', function(){
             document.querySelector(".dayClass > option:nth-child(32)").style.display = 'none'
             chosenMonth = Number(chosenMonth)
 
-            if (chosenDay > 30){
+            if (chosenDay > daysArr.sep){
                 document.querySelector(".dayClass").value = "0"
             }
         break;
@@ -143,7 +159,7 @@ document.querySelector(".monthClass").addEventListener('change', function(){
             document.querySelector(".dayClass > option:nth-child(32)").style.display = 'none'
             chosenMonth = Number(chosenMonth)
 
-            if (chosenDay > 30){
+            if (chosenDay > daysArr.nov){
                 document.querySelector(".dayClass").value = "0"
             }
         break;
@@ -165,22 +181,6 @@ document.querySelector(".dayClass").addEventListener('change', function(){
 document.querySelector(".yearClass").addEventListener('change', function(){
     chosenYear = Number(document.querySelector(".yearClass").value)
 })
-
-//Array storing how many days there is in each month
-daysArr = {
-    jan : 31,
-    feb : daysInFebruary,
-    mar : 31,
-    apr : 30,
-    may : 31,
-    jun : 30,
-    jul : 31,
-    aug : 31,
-    sep : 30,
-    oct : 31,
-    nov : 30,
-    dec : 31
-}
 
 function renderResults(divClass){
     document.querySelector(divClass).style.color = '#474747'
