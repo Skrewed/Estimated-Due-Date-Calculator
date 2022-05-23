@@ -11,10 +11,16 @@ document.querySelector('.currentYear').value = `${currentYear}`
 document.querySelector('.lastYear').innerText = `${currentYear - 1}`
 document.querySelector('.lastYear').value = `${currentYear - 1}`
 
+function resetDayAndYearValues() {
+    document.querySelector(".dayClass").disabled = false
+    document.querySelector(".dayClass").value = "0"
+    document.querySelector(".yearClass").disabled = false
+    document.querySelector(".yearClass").value = "0"
+}
+
 //Demands that the user select the Month first, so our EventListener 'change' can work on how many days to show.
 if (document.querySelector(".monthClass").value == "0"){
-    document.querySelector(".dayClass").disabled = true
-    document.querySelector(".yearClass").disabled = true
+    resetDayAndYearValues()
 }
 
 //Is it a Leap Year?
@@ -29,8 +35,7 @@ document.querySelector(".monthClass").addEventListener('change', function(){
 
     chosenMonth = document.querySelector(".monthClass").value
 
-    document.querySelector(".dayClass").disabled = false
-    document.querySelector(".yearClass").disabled = false
+    resetDayAndYearValues()
 
     //If at any point the user selects 'Month' (value 0), it turns off Day and Year select again
     if (chosenMonth == "0"){
@@ -190,8 +195,10 @@ function renderResults(divClass){
 //Listen to btnCalc click and returns the calculation
 document.querySelector(".btnCalc").addEventListener('click', function (){
 
-    if (chosenDay == undefined || chosenMonth == undefined || chosenYear == undefined){
-        alert(`You need to select a Date.`);
+    if (chosenDay == undefined || chosenMonth == undefined || chosenYear == undefined || document.querySelector(".dayClass").value == "0"){
+        alert(`Insert the Date for the Last Menstrual Period`);
+        document.querySelector(".eddResClass").innerText = ""
+        document.querySelector(".gaResClass").innerText = ""
     } else {
 
         //Reconstructs the inputed date as a actual new Date() element
