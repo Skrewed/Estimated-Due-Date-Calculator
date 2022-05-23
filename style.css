@@ -3,11 +3,25 @@
     margin: 0;
 }
 
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background: #fafafa;
+}
+::-webkit-scrollbar-thumb {
+    background: #ffa49a;
+    border-radius:10px;
+}
+
 body {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
-    height: 100vh;
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
 
     font-family: 'Roboto', 'Open Sans', sans-serif;
     
@@ -21,6 +35,15 @@ body {
     image-rendering: crisp-edges;
 }
 
+/* 
+Accounts for the problem where the Chrome navigation bar 
+messes with the 100vh from the height property on mobile view.
+*/
+
+html {
+    height: -webkit-fill-available;
+}
+
 header, footer {
     height: 6vh;
     min-height: 60px;
@@ -30,83 +53,52 @@ header, footer {
     align-items: center;
 
     text-align: center;
-    font-weight: 500;
-    color: #ffb7af;
 
+    color:#ffa49a;
     background-color: #fafafa;
-}
 
-header{
-    top: 0px;
     position: fixed;
     width: 100vw;
     z-index: 1;
 
-    -webkit-box-shadow: 0px 6px 23px -9px rgba(0,0,0,0.2);
-    -moz-box-shadow: 0px 6px 23px -9px rgba(0,0,0,0.2);
-    box-shadow: 0px 6px 23px -9px rgba(0,0,0,0.2);
+    -webkit-box-shadow: 0px 0px 30px 1px rgba(129, 100, 95, 0.15);
+    -moz-box-shadow: 0px 0px 30px 1px rgba(129, 100, 95, 0.15);
+    box-shadow: 0px 0px 30px 1px rgba(129, 100, 95, 0.15);
 }
 
-footer{
+header {
+    top: 0px;
+}
+
+footer {
     bottom: 0px;
-    position: fixed;
-    width: 100vw;
-    z-index: 2;
-
-    -webkit-box-shadow: 0px -6px 23px -9px rgba(0,0,0,0.2);
-    -moz-box-shadow: 0px -6px 23px -9px rgba(0,0,0,0.2);
-    box-shadow: 0px -6px 23px -9px rgba(0,0,0,0.2);
 }
 
-.pageTitle {
-    padding: 20px;
+footer > div > p:nth-child(1){
+    font-size: 0.9rem;
 }
 
-a{
+footer > div > p > a{
     text-decoration: none;
-    color: #ffb7af;
+    color:#ffa49a
 }
 
-.calculation{
+.calculation {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
     flex-direction: column;
 
-    margin: calc(6vh + 28px) auto 0 auto;
+    margin: auto 0;
 }
 
-h2, h4{
-    color: #ff9589;
-}
-
-hr{
-    border: 0px none;
-    background-color: #c7c7c7;
-
-    min-height: 1px;
-    width: 100%
-}
-
-.dateConstructor{
-    display: flex;
-    flex-direction: row;
-    column-gap: 10px;
-
-    align-items: center;
-    justify-content: space-evenly;
-
-    width: 90vw;
-    max-width: 800px;
-}
-
-.sub-sec-title{
+.item-section {
     margin: 10px 0;
     border-radius: 6px;
 
-    height: 3vh;
+    height: 5vh;
     min-height: 36px;
+
     width: 90vw;
     max-width: 800px;
 
@@ -114,54 +106,63 @@ hr{
     justify-content: center;
     align-items: center;
 
-    font-weight: 500;
     color: #fafafa;
-    background-color: #ffb7af;
+    background-color: #ffa49a;
 }
 
-select{
-    text-align: center;
+.dateConstructor {
+    display: flex;
+    column-gap: 10px;
 
-    height: 3vh;
+    height: 5vh;
     min-height: 36px;
 
+    width: 90vw;
+    max-width: 800px;
+}
+
+.dayClass, .monthClass, .yearClass {
     width: 100vw;
 
     border: 0px none;
     border-radius: 6px;
 
-    color: #ffb7af;
+    font-size: 0.9rem;
+    text-align: center;
+
+    color: #ffa49a;
     background-color:#fafafa;
 }
 
-button {
+.btnCalc {
     color: #fafafa;
-    background-color: #ffb7af;
+    background-color: #ffa49a;
 
-    font-weight: 500;
-    font-size: 1rem;
+    font-weight: 300;
+    font-size: 1.5rem;
 
     border-radius: 100%;
     border: 0px none;
 
     height: 15vh;
-    width: 15vh;
     min-height: 150px;
+
+    width: 15vh;
     min-width: 150px;
 
-    margin: 25px 0 15px 0;
+    margin: 20px 0 10px 0;
 }
 
-button:hover{
-    color: #ff9589;
+.btnCalc:hover {
+    color: #ffa49a;
     background-color: #fafafa;
 }
 
-.gaResClass, .eddResClass{
+.gaResClass, .eddResClass {
     margin-bottom: 10px;
     border-radius: 6px;
 
-    height: 3vh;
+    height: 5vh;
     min-height: 36px;
     width: 90vw;
     max-width: 800px;
@@ -172,69 +173,8 @@ button:hover{
     font-style: italic;
     font-weight: 500;
     font-size: 0.9rem;
-    color: #ffb7af;
+    color: #ffa49a;
     background-color: #fafafa;
 
     display: flex;
-}
-
-.explanationDiv{
-    box-sizing: border-box;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-
-    background-color: #fafafa;
-
-    height: auto;
-    min-height: 300px;
-    width: 90vw;
-    max-width: 800px;
-
-    margin: 10px auto calc(6vh + 38px) auto;
-    padding: 3vh 3vh;
-
-    border-radius: 6px;
-}
-
-.explanationText{
-    font-size: 0.9rem;
-    color: #a2a2a2;
-    line-height: 140%;
-    text-align: left;
-}
-
-.explanationText > p > strong{
-    color: #474747;
-    font-weight: 500;
-}
-
-
-.credits > p{
-    font-size: 0.9rem;
-}
-
-.arrow{
-    min-height: 40px;
-    min-width: 40px;
-    margin: 3vh auto 2vh auto;
-    background-image: url(./assets/arrow.svg);
-    background-size: contain;
-}
-
-.bounce {
-animation: bounce 2s infinite;
-}
-    @keyframes bounce {
-        0%, 20%, 50%, 80%, 100% {
-            transform: translateY(0);
-        }
-        40% {
-            transform: translateY(-2vh);
-        }
-        60% {
-            transform: translateY(-1vh);
-    }
 }
