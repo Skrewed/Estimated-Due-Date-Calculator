@@ -7,8 +7,8 @@ function renderResults(divClass){
     document.querySelector(divClass).style.fontStyle = 'normal'
 }
 
-//Listen to btn-calc click and returns the calculation
-document.querySelector(".btn-calc").addEventListener('click', function (){
+//Listen to btnCalc click and returns the calculation
+document.querySelector(".btnCalc").addEventListener('click', function (){
     eddDay = document.querySelector('.dayClass').value
     eddMonth = document.querySelector('.monthClass').value
     eddYear = document.querySelector('.yearClass').value
