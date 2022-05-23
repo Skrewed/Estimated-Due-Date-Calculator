@@ -1,4 +1,4 @@
-var eddDay, eddMonth, eddYear, chosenMonth, chosenDay, chosenYear
+var eddDay, eddMonth, eddYear, chosenMonth, chosenDay, chosenYear, daysArr, daysInFebruary
 
 var currentDate = new Date()
 
@@ -15,6 +15,13 @@ document.querySelector('.lastYear').value = `${currentYear - 1}`
 if (document.querySelector(".monthClass").value == "0"){
     document.querySelector(".dayClass").disabled = true
     document.querySelector(".yearClass").disabled = true
+}
+
+//Is it a Leap Year?
+if (((currentYear % 4 == 0) && (currentYear % 100 != 0)) || (currentYear % 400 == 0)){
+    daysInFebruary = 29
+} else {
+    daysInFebruary = 28
 }
 
 //Disable day 31 on months that have only 30 days (disables 31, 30 and 29 on February)
@@ -49,10 +56,11 @@ document.querySelector(".monthClass").addEventListener('change', function(){
         case "2":
             document.querySelector(".dayClass > option:nth-child(32)").style.display = 'none'
             document.querySelector(".dayClass > option:nth-child(31)").style.display = 'none'
+            document.querySelector(".dayClass > option:nth-child(30)").style.display = 'none'
 
-            //Disables day 29 only if it is !NOT a Leap Year.
-            if (!(((currentYear % 4 == 0) && (currentYear % 100 != 0)) || (currentYear % 400 == 0))){
-                document.querySelector(".dayClass > option:nth-child(30)").style.display = 'none'
+            //Is it a Leap Year?
+            if (daysInFebruary == 29){
+                document.querySelector(".dayClass > option:nth-child(30)").style.display = 'inline'
             }
 
             chosenMonth = Number(chosenMonth)
@@ -156,8 +164,21 @@ document.querySelector(".yearClass").addEventListener('change', function(){
     chosenYear = Number(document.querySelector(".yearClass").value)
 })
 
-
-
+//Array storing how many days there is in each month
+daysArr = {
+    jan : 31,
+    feb : daysInFebruary,
+    mar : 31,
+    apr : 30,
+    may : 31,
+    jun : 30,
+    jul : 31,
+    aug : 31,
+    sep : 30,
+    oct : 31,
+    nov : 30,
+    dec : 31
+}
 
 function renderResults(divClass){
     document.querySelector(divClass).style.color = '#474747'
@@ -209,8 +230,73 @@ document.querySelector(".btnCalc").addEventListener('click', function (){
         //Changes the CSS for the Results
         renderResults(".gaResClass")
 
+        switch (chosenMonth) {
+            case 1:
+            case 2:
+            case 3:
+                eddDay = chosenDay + 7
+                eddMonth = chosenMonth + 9
+                eddYear = chosenYear
+
+                if (eddMonth == 10 && eddDay > daysArr.oct){
+                    eddDay = eddDay - daysArr.oct //Excedeed - Days on that specific month
+                    eddMonth += 1 //Jumped to the next month.
+                } else if (eddMonth == 11 && eddDay > daysArr.nov){
+                    eddDay = eddDay - daysArr.nov //Excedeed - Days on that specific month
+                    eddMonth += 1 //Jumped to the next month.
+                } else if (eddMonth == 12 && eddDay > daysArr.dec){
+                    eddDay = eddDay - daysArr.dec //Excedeed - Days on that specific month
+                    eddMonth = 1 //January
+                    eddYear += 1 //Year + 1
+                }
+            break;
+            case 4:
+            case 5:
+            case 6:
+            case 7:
+            case 8:
+            case 9:
+            case 10:
+            case 11:
+            case 12:
+                eddDay = chosenDay + 7
+                eddMonth = chosenMonth - 3
+                eddYear = chosenYear + 1
+                
+                if (eddMonth == 1 && eddDay > daysArr.jan){
+                    eddDay = eddDay - daysArr.jan
+                    eddMonth += 1
+                } else if (eddMonth == 2 && eddDay > daysArr.fev){
+                    eddDay = eddDay - daysArr.fev
+                    eddMonth += 1
+                } else if (eddMonth == 3 && eddDay > daysArr.mar){
+                    eddDay = eddDay - daysArr.mar
+                    eddMonth += 1
+                } else if (eddMonth == 4 && eddDay > daysArr.apr){
+                    eddDay = eddDay - daysArr.apr
+                    eddMonth += 1
+                } else if (eddMonth == 5 && eddDay > daysArr.may){
+                    eddDay = eddDay - daysArr.may
+                    eddMonth += 1
+                } else if (eddMonth == 6 && eddDay > daysArr.jun){
+                    eddDay = eddDay - daysArr.jun
+                    eddMonth += 1
+                } else if (eddMonth == 7 && eddDay > daysArr.jul){
+                    eddDay = eddDay - daysArr.jul
+                    eddMonth += 1
+                } else if (eddMonth == 8 && eddDay > daysArr.aug){
+                    eddDay = eddDay - daysArr.aug
+                    eddMonth += 1
+                } else if (eddMonth == 9 && eddDay > daysArr.sep){
+                    eddDay = eddDay - daysArr.sep
+                    eddMonth += 1
+                }
+            break;
+        }
+
         //Writes the EDD based on the LMP.
-        document.querySelector(".eddResClass").innerText = `${eddMonth}/${eddDay}/${eddYear}`
+        document.querySelector(".eddResClass").innerText = `${eddMonth.toString().padStart(2,"0")}/${eddDay.toString().padStart(2,"0")}/${eddYear}`
+
         renderResults(".eddResClass")
     }
 })
