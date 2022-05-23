@@ -15,8 +15,8 @@ document.querySelector('.lastYear').value = `${currentYear - 1}`
 function resetDayAndYearValues() {
     if (document.querySelector(".monthClass").value == "0"){
         document.querySelector(".dayClass").disabled = true
-        document.querySelector(".dayClass").value = "0"
         document.querySelector(".yearClass").disabled = true
+        document.querySelector(".dayClass").value = "0"
         document.querySelector(".yearClass").value = "0"
     } else {
         document.querySelector(".dayClass").disabled = false
@@ -223,12 +223,26 @@ document.querySelector(".btnCalc").addEventListener('click', function (){
 
             //Writes the GA result to DOM based on the LMP.
             if (gaDays == 1){
-                document.querySelector(".gaResClass").innerText = `${gaWeeks} weeks and ${gaDays} day`
+                if (gaWeeks == 1){
+                    document.querySelector(".gaResClass").innerText = `${gaWeeks} week and ${gaDays} day`
+                } else {
+                    document.querySelector(".gaResClass").innerText = `${gaWeeks} weeks and ${gaDays} day`
+                }
             } else {
-                document.querySelector(".gaResClass").innerText = `${gaWeeks} weeks and ${gaDays} days`
+                if (gaWeeks == 1){
+                    document.querySelector(".gaResClass").innerText = `${gaWeeks} week and ${gaDays} days`
+                } else if (gaWeeks == 0) {
+                    document.querySelector(".gaResClass").innerText = `${gaDays} days`
+                } else {
+                    document.querySelector(".gaResClass").innerText = `${gaWeeks} weeks and ${gaDays} days`
+                }
             }
         } else {
-            document.querySelector(".gaResClass").innerText = `${gaWeeks} weeks`
+            if (gaWeeks == 1){
+                document.querySelector(".gaResClass").innerText = `${gaWeeks} week`
+            } else {
+                document.querySelector(".gaResClass").innerText = `${gaWeeks} weeks`
+            }
         }
 
         switch (chosenMonth) {
