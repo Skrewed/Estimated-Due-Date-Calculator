@@ -227,9 +227,6 @@ document.querySelector(".btnCalc").addEventListener('click', function (){
             document.querySelector(".gaResClass").innerText = `${gaWeeks} weeks`
         }
 
-        //Changes the CSS for the Results
-        renderResults(".gaResClass")
-
         switch (chosenMonth) {
             case 1:
             case 2:
@@ -294,10 +291,11 @@ document.querySelector(".btnCalc").addEventListener('click', function (){
             break;
         }
 
-        //Writes the EDD based on the LMP.
+        //Writes the EDD result to DOM based on the LMP.
         document.querySelector(".eddResClass").innerText = `${eddMonth.toString().padStart(2,"0")}/${eddDay.toString().padStart(2,"0")}/${eddYear}`
 
+        //Changes the CSS for the Results
+        renderResults(".gaResClass")
         renderResults(".eddResClass")
     }
 })
-
