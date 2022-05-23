@@ -215,3 +215,9 @@ footer > div > p > a{
 
     display: flex;
 }
+
+select:disabled{
+    color: #fafafa;
+    background-color: #fafafa;
+    opacity: 60%;
+}
