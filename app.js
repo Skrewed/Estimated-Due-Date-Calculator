@@ -69,7 +69,7 @@ document.querySelector(".monthClass").addEventListener('change', function(){
 
             /*If user selects a month, then day 31, and changes the month again, to one 
             that doesn't have 31 days, the 'day select' will be reset to "Day" (value 0)*/
-            if (chosenDay > 28){
+            if (chosenDay > daysInFebruary){
                 document.querySelector(".dayClass").value = "0"
             }
         break;
