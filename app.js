@@ -1,5 +1,7 @@
 var eddDay, eddMonth, eddYear, chosenMonth, chosenDay, chosenYear
 
+var currentDate = new Date()
+
 var [currentDay, currentMonth, currentYear] = [new Date().getDate(), new Date().getMonth() + 1, new Date().getFullYear()]
 
 //Updates the Select/Option to the last year and current year (so it won't get obssolate later)
@@ -154,6 +156,9 @@ document.querySelector(".yearClass").addEventListener('change', function(){
     chosenYear = Number(document.querySelector(".yearClass").value)
 })
 
+
+
+
 function renderResults(divClass){
     document.querySelector(divClass).style.color = '#474747'
     document.querySelector(divClass).style.fontSize = '1rem'
@@ -163,27 +168,45 @@ function renderResults(divClass){
 
 //Listen to btnCalc click and returns the calculation
 document.querySelector(".btnCalc").addEventListener('click', function (){
-    eddDay = document.querySelector('.dayClass').value
-    eddMonth = document.querySelector('.monthClass').value
-    eddYear = document.querySelector('.yearClass').value
 
-    // if (eddDay.length == 1) {
-    //     eddDay = "0" + eddDay
-    // }
-
-    // if (eddMonth.length == 1) {
-    //     eddMonth = "0" + eddMonth
-    // }
-
-    if (eddDay == 0 || eddMonth == 0 || eddYear == 0){
+    if (chosenDay == undefined || chosenMonth == undefined || chosenYear == undefined){
         alert(`You need to select a Date.`);
     } else {
 
-        
-        // alert(`Day: ${eddDay}\nMonth: ${eddMonth}\nYear: ${eddYear}`);
+        //Reconstructs the inputed date as a actual new Date() element
+        var lastPeriodDate = new Date(`"${chosenMonth.toString().padStart(2, "0")}/${chosenDay.toString().padStart(2, "0")}/${chosenYear}"`)
 
-        //Writes the GA based on the LMP.
-        document.querySelector(".gaResClass").innerText = `${eddDay} weeks and ${eddMonth} days.`
+        if (lastPeriodDate >= currentDate){
+            alert('You need to select a Date prior to Today')
+            return
+        }
+
+        //Subtracts the total of miliseconds between currentDate and lastPeriodDate
+        var dateDifference = currentDate.getTime() - lastPeriodDate.getTime()
+
+        /*Takes 12 hours in ms from the ms value so it would count +1 day if we're past 12 O'clock.
+        And also converts it to a total of days*/
+        var daysFromLastPeriodToCurrentDate = ((dateDifference - 43200000) / (1000 * 3600 * 24)).toFixed(0)
+
+        var gaWeeks = Math.floor(daysFromLastPeriodToCurrentDate / 7)
+
+        //If there is remain to the days / 7 division...
+        if (daysFromLastPeriodToCurrentDate % 7 != 0){
+
+            //Stores the remain as days
+            var gaDays = daysFromLastPeriodToCurrentDate % 7
+
+            //Writes the GA result to DOM based on the LMP.
+            if (gaDays == 1){
+                document.querySelector(".gaResClass").innerText = `${gaWeeks} weeks and ${gaDays} day`
+            } else {
+                document.querySelector(".gaResClass").innerText = `${gaWeeks} weeks and ${gaDays} days`
+            }
+        } else {
+            document.querySelector(".gaResClass").innerText = `${gaWeeks} weeks`
+        }
+
+        //Changes the CSS for the Results
         renderResults(".gaResClass")
 
         //Writes the EDD based on the LMP.
@@ -191,3 +214,4 @@ document.querySelector(".btnCalc").addEventListener('click', function (){
         renderResults(".eddResClass")
     }
 })
+
