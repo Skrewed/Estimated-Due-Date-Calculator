@@ -1,4 +1,4 @@
-var eddDay, eddMonth, eddYear, chosenMonth, chosenDay, chosenYear, daysArr, daysInFebruary, eddMonthName
+var eddDay, eddMonth, eddYear, chosenMonth, chosenDay, chosenYear, daysArr, daysInFebruary, monthNames
 
 var currentDate = new Date()
 
@@ -309,13 +309,9 @@ document.querySelector(".btnCalc").addEventListener('click', function (){
             11: "November",
             12: "December"
         }
-
-        for (let i = 1; i <= 12; i++){
-            eddMonth == i ? eddMonthName = monthNames[i] : undefined
-        }
         
         //Writes the EDD result to DOM based on the LMP.
-        document.querySelector(".eddResClass").innerText = `${eddMonthName} ${eddDay.toString()}, ${eddYear}`
+        document.querySelector(".eddResClass").innerText = `${monthNames[eddMonth]} ${eddDay.toString()}, ${eddYear}`
 
         //Changes the CSS for the Results
         renderResults(".gaResClass")
