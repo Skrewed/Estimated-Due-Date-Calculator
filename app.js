@@ -325,7 +325,7 @@ document.querySelector(".btnCalc").addEventListener('click', function (){
         }
         
         //Writes the EDD result to DOM based on the LMP.
-        document.querySelector(".eddResClass").innerText = `${monthNames[eddMonth]} ${eddDay.toString()}, ${eddYear}`
+        document.querySelector(".eddResClass").innerText = `${monthNames[eddMonth]} ${eddDay}, ${eddYear}`
 
         //Changes the CSS for the Results
         renderResults(".gaResClass")
