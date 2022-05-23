@@ -1,4 +1,4 @@
-var eddDay, eddMonth, eddYear, chosenMonth, chosenDay, chosenYear, daysArr, daysInFebruary
+var eddDay, eddMonth, eddYear, chosenMonth, chosenDay, chosenYear, daysArr, daysInFebruary, eddMonthName
 
 var currentDate = new Date()
 
@@ -11,17 +11,20 @@ document.querySelector('.currentYear').value = `${currentYear}`
 document.querySelector('.lastYear').innerText = `${currentYear - 1}`
 document.querySelector('.lastYear').value = `${currentYear - 1}`
 
+//Demands that the user select the Month first, so our EventListener 'change' can work on how many days to show.
 function resetDayAndYearValues() {
-    document.querySelector(".dayClass").disabled = false
-    document.querySelector(".dayClass").value = "0"
-    document.querySelector(".yearClass").disabled = false
-    document.querySelector(".yearClass").value = "0"
+    if (document.querySelector(".monthClass").value == "0"){
+        document.querySelector(".dayClass").disabled = true
+        document.querySelector(".dayClass").value = "0"
+        document.querySelector(".yearClass").disabled = true
+        document.querySelector(".yearClass").value = "0"
+    } else {
+        document.querySelector(".dayClass").disabled = false
+        document.querySelector(".yearClass").disabled = false
+    }
 }
 
-//Demands that the user select the Month first, so our EventListener 'change' can work on how many days to show.
-if (document.querySelector(".monthClass").value == "0"){
-    resetDayAndYearValues()
-}
+resetDayAndYearValues()
 
 //Is it a Leap Year?
 if (((currentYear % 4 == 0) && (currentYear % 100 != 0)) || (currentYear % 400 == 0)){
@@ -36,12 +39,6 @@ document.querySelector(".monthClass").addEventListener('change', function(){
     chosenMonth = document.querySelector(".monthClass").value
 
     resetDayAndYearValues()
-
-    //If at any point the user selects 'Month' (value 0), it turns off Day and Year select again
-    if (chosenMonth == "0"){
-        document.querySelector(".dayClass").disabled = true
-        document.querySelector(".yearClass").disabled = true
-    }
 
     //Reset the display:inline from days 29, 30 and 31
     function displayDays() {
@@ -270,8 +267,8 @@ document.querySelector(".btnCalc").addEventListener('click', function (){
                 if (eddMonth == 1 && eddDay > daysArr.jan){
                     eddDay = eddDay - daysArr.jan
                     eddMonth += 1
-                } else if (eddMonth == 2 && eddDay > daysArr.fev){
-                    eddDay = eddDay - daysArr.fev
+                } else if (eddMonth == 2 && eddDay > daysArr.feb){
+                    eddDay = eddDay - daysArr.feb
                     eddMonth += 1
                 } else if (eddMonth == 3 && eddDay > daysArr.mar){
                     eddDay = eddDay - daysArr.mar
@@ -298,8 +295,27 @@ document.querySelector(".btnCalc").addEventListener('click', function (){
             break;
         }
 
+        monthNames = {
+            1: "January",
+            2: "February",
+            3: "March",
+            4: "April",
+            5: "May",
+            6: "June",
+            7: "July",
+            8: "August",
+            9: "September",
+            10: "October",
+            11: "November",
+            12: "December"
+        }
+
+        for (let i = 1; i <= 12; i++){
+            eddMonth == i ? eddMonthName = monthNames[i] : undefined
+        }
+        
         //Writes the EDD result to DOM based on the LMP.
-        document.querySelector(".eddResClass").innerText = `${eddMonth.toString().padStart(2,"0")}/${eddDay.toString().padStart(2,"0")}/${eddYear}`
+        document.querySelector(".eddResClass").innerText = `${eddMonthName} ${eddDay.toString()}, ${eddYear}`
 
         //Changes the CSS for the Results
         renderResults(".gaResClass")
