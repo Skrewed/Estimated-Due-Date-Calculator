@@ -11,7 +11,7 @@ document.querySelector('.currentYear').value = `${currentYear}`
 document.querySelector('.lastYear').innerText = `${currentYear - 1}`
 document.querySelector('.lastYear').value = `${currentYear - 1}`
 
-//Demands that the user select the Month first, so our EventListener 'change' can work on how many days to show.
+//Demands that the user select the Month first, so our EventListener (line 53) can work on how many days to show.
 function resetDayAndYearValues() {
     if (document.querySelector(".monthClass").value == "0"){
         document.querySelector(".dayClass").disabled = true
@@ -35,18 +35,18 @@ if (((currentYear % 4 == 0) && (currentYear % 100 != 0)) || (currentYear % 400 =
 
 //Array storing how many days there is in each month
 daysArr = {
-    jan : 31,
-    feb : daysInFebruary,
-    mar : 31,
-    apr : 30,
-    may : 31,
-    jun : 30,
-    jul : 31,
-    aug : 31,
-    sep : 30,
-    oct : 31,
-    nov : 30,
-    dec : 31
+    jan: 31,
+    feb: daysInFebruary,
+    mar: 31,
+    apr: 30,
+    may: 31,
+    jun: 30,
+    jul: 31,
+    aug: 31,
+    sep: 30,
+    oct: 31,
+    nov: 30,
+    dec: 31
 }
 
 //Disable day 31 on months that have only 30 days (disables 31, 30 and 29 on February)
